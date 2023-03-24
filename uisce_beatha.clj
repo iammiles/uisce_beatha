@@ -43,14 +43,19 @@
       trim
       (convert-to :hickory)))
 
+(defn search
+  [{:keys [opts]}])
+
 (defn categories
   [{:keys [opts]}]
   (println opts)
-  (dorun (map println (->> (get-page home-path)
-                           (s/select (s/child 
-                                      (s/tag :li)
-                                      (s/tag :a)))
-                           (map (fn [el] (first (:content el))))))))
+  (dorun
+   (map println
+        (->> (get-page home-path)
+             (s/select (s/child
+                        (s/tag :li)
+                        (s/tag :a)))
+             (map (fn [el] (first (:content el))))))))
 
 (defn help
   [_]
